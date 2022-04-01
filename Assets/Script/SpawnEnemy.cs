@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public GameObject spawnEnemyDown;
-    public GameObject spawnEnemyUp;
-    public GameObject spawnEnemyLeft;
-    public GameObject spawnEnemyRight;
+    public GameObject spawnEnemy;
 
     void Start()
     {
@@ -24,22 +21,22 @@ public class SpawnEnemy : MonoBehaviour
         int rnd = Random.Range(0, 9);
         if(rnd == 1)
         {
-            Instantiate(spawnEnemyDown.transform, new Vector3(0f, 0f, 0f), Quaternion.identity);     // Define el Objeto, El lugar, el giro del objeto)
+            Instantiate(spawnEnemy.transform, new Vector3(0f, 0f, 0f), Quaternion.identity);     // Define el Objeto, El lugar, el giro del objeto)
 
         }
         if (rnd == 3)
         {
-            Instantiate(spawnEnemyUp.transform, new Vector3(0f, 0f, 0f), Quaternion.identity);    // Define el Objeto, El lugar, el giro del objeto)
+            Instantiate(spawnEnemy.transform, new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, -90f));    // Define el Objeto, El lugar, el giro del objeto)
 
         }
         if (rnd == 5)
         {
-            Instantiate(spawnEnemyLeft.transform, new Vector3(0f, 0f, 0f), Quaternion.identity);    // Define el Objeto, El lugar, el giro del objeto)
+            Instantiate(spawnEnemy.transform, new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, -180f));    // Define el Objeto, El lugar, el giro del objeto)
 
         }
         if (rnd == 7)
         {
-            Instantiate(spawnEnemyRight.transform, new Vector3(0f, 0f, 0f), Quaternion.identity);    // Define el Objeto, El lugar, el giro del objeto)
+            Instantiate(spawnEnemy.transform, new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 90f));    // Define el Objeto, El lugar, el giro del objeto)
 
         }
     }

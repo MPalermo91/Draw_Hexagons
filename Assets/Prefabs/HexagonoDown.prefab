@@ -156,4 +156,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30a724f685ca5449b7806d6a0a87bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achicar: 0.1
+  hexagon: {fileID: 0}
+  achicar: 0.3
