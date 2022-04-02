@@ -61,6 +61,7 @@
     <Compile Include="Assets\Script\MovPlayer.cs" />
     <Compile Include="Assets\Script\HexIA.cs" />
     <Compile Include="Assets\Script\SalirJuego.cs" />
+    <Compile Include="Assets\Script\ContPuntos.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class MovPlayer : MonoBehaviour
 {
@@ -14,23 +13,32 @@ public class MovPlayer : MonoBehaviour
     private int vida = 1;
 
     public GameObject condicionDerrota;
+    public GameObject tiempoRegresoMenu;
 
     public Text txtPuntos;
+    public Text txtTiempo;
 
     public AudioSource soundPunto;
     public AudioSource soundMorir;
 
     public void Start()
     {
-        txtPuntos = this.GetComponent<Text>();
-        // /* txtPuntos.text = contPuntos.ToString("00");*/
-        contadorTiempo = 5f;
+        contadorTiempo = 5000;
+
+        txtPuntos.GetComponent<Text>();
+        txtPuntos.text = contPuntos.ToString("00");
+        txtTiempo.GetComponent<Text>();
+        txtTiempo.text = contadorTiempo.ToString("00");
+        
         condicionDerrota.SetActive(false);
+        tiempoRegresoMenu.SetActive(false);
+        soundMorir.Pause();
+        soundPunto.Pause();
     }
     void Update()
     {
-
-
+       
+        
         if (Input.GetKey(KeyCode.A))
         {
             this.transform.Translate(-speed * Time.deltaTime, 0, 0);
@@ -50,13 +58,14 @@ public class MovPlayer : MonoBehaviour
 
         if (vida <= 0)
         {
-            Destroy(this.gameObject);   //Destruye el objeto que colisiona con este objeto (menos los trigger)
+            // Destroy(this.gameObject);   //Destruye el objeto que colisiona con este objeto (menos los trigger)
+            this.gameObject.SetActive(false);
         }
-        for (float t = 0; destruiObjeto == true; t++)
+        for (float t = 0; destruiObjeto == true && t >= 5; t++)
         {
             contadorTiempo--;
-            condicionDerrota.SetActive(true);
-
+            Debug.Log("Contador de tiempo: " + contadorTiempo);
+            
             if (contadorTiempo <= 0)
             {
                 destruiObjeto = false;
@@ -71,11 +80,14 @@ public class MovPlayer : MonoBehaviour
         vida--;
         soundMorir.Play();
         destruiObjeto = true;
+        condicionDerrota.SetActive(true);
+        tiempoRegresoMenu.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // Para colisiones con objetos trigger (son transpasables pero colisionan)
     {
-        contPuntos += 1; // Suma puntos cada vez que atravieza el collider "Trigger" de un Hexagono sin chocar con sus lados visibles.
+        contPuntos ++; // Suma puntos cada vez que atravieza el collider "Trigger" de un Hexagono sin chocar con sus lados visibles.
+        Debug.Log("Score: "+ contPuntos);
         soundPunto.Play();
     }
 
