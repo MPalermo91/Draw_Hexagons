@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HexIA : MonoBehaviour
 {
     // public float speedEnemy = 1;
    
-    public float achicar = 0.1f;
-    // public GameObject condicionDerrota;
+    public float achicar = 0.2f;
+    
+ // public GameObject tiempoVolverAlMenu;
+    public Text txtTiempo;
 
     void Start()
     {
         
+        txtTiempo = this.GetComponent<Text>();
     }
     void Update()
     {
@@ -25,28 +29,16 @@ public class HexIA : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
 
-    /*void OnTriggerEnter2D(Collider2D col1)  //Solo funciona con objetos Trigger
-    {
-        Debug.Log("Se destruye Hexagono");
-        Destroy(this.gameObject); 
-    }*/
+    
     void OnCollisionEnter2D(Collision2D colision2)
     {
         Debug.Log("Destrui Player");
         Destroy(gameObject);
-      //  condicionDerrota.SetActive(true);
-      // Tocar Enter para Volver al Menu Inicial <--- Generar el codigo necesario y que luego un if te lleve al cambio de Scena
-      
     }
   
-   // private void OnTriggerEnter(Collider other)
-   // {
-   //     Debug.Log("Se destruye Hexagono");
-   //     Destroy(this.gameObject);
-   // }
+   
 
 }

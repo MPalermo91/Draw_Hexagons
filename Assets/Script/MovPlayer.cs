@@ -8,19 +8,28 @@ using TMPro;
 public class MovPlayer : MonoBehaviour
 {
     public float speed = 0.05f;
-    // public GameObject condicionDerrota;
-    public float contPuntos;
+    public float contPuntos = 0;
+    public float contadorTiempo;
+    public bool destruiObjeto;
     private int vida = 1;
-    // private int tempVolverAlMenu = 5;
+
+    public GameObject condicionDerrota;
+
     public Text txtPuntos;
+
+    public AudioSource soundPunto;
+    public AudioSource soundMorir;
 
     public void Start()
     {
         txtPuntos = this.GetComponent<Text>();
+        // /* txtPuntos.text = contPuntos.ToString("00");*/
+        contadorTiempo = 5f;
+        condicionDerrota.SetActive(false);
     }
     void Update()
     {
-        txtPuntos.text = contPuntos.ToString("0000");
+
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -38,24 +47,37 @@ public class MovPlayer : MonoBehaviour
         {
             this.transform.Translate(0, -speed * Time.deltaTime, 0);
         }
+
+        if (vida <= 0)
+        {
+            Destroy(this.gameObject);   //Destruye el objeto que colisiona con este objeto (menos los trigger)
+        }
+        for (float t = 0; destruiObjeto == true; t++)
+        {
+            contadorTiempo--;
+            condicionDerrota.SetActive(true);
+
+            if (contadorTiempo <= 0)
+            {
+                destruiObjeto = false;
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision) // Para colisiones con objetos solidos (sin activar trigger)
     {
-        
         vida--;
-         if (vida <= 0)
-         {
-            Destroy(this.gameObject);   //Destruye el objeto que colisiona con este objeto (menos los trigger)
-            Debug.Log("Perdiste, tus puntos totales son: " + contPuntos);
-            SceneManager.LoadScene("MainMenu");
-        }
+        soundMorir.Play();
+        destruiObjeto = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision) // Para colisiones con objetos trigger (son transpasables pero colisionan)
+    private void OnTriggerEnter2D(Collider2D collision) // Para colisiones con objetos trigger (son transpasables pero colisionan)
     {
-          contPuntos+= 10; // Suma puntos cada vez que atravieza un Hexagono sin chocar con sus lados visibles.
+        contPuntos += 1; // Suma puntos cada vez que atravieza el collider "Trigger" de un Hexagono sin chocar con sus lados visibles.
+        soundPunto.Play();
     }
 
-    
+
 }

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SalirJuego : MonoBehaviour
 {
-
     public void SalirDelJuego()
     {
         Application.Quit();
