@@ -25,7 +25,7 @@ public class SpawnEnemy : MonoBehaviour
     void Spawnear()
     {
         int rnd = Random.Range(0, 6);
-        Debug.Log(rnd);
+ 
         if(rnd == 1)
         {
             Instantiate(spawnEnemy.transform, new Vector3(0f, 0f, 0f), Quaternion.identity);     // Define el Objeto, El lugar, el giro del objeto)

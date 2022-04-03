@@ -907,7 +907,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84e0f79561145b2448b299935422e2b6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1691,7 +1691,6 @@ MonoBehaviour:
   speed: 5.5
   contPuntos: 0
   contadorTiempo: 0
-  destruiObjeto: 0
   condicionDerrota: {fileID: 1414117620}
   tiempoRegresoMenu: {fileID: 348077944}
   cantPuntosObtenidos: {fileID: 1422561017}
@@ -2093,7 +2092,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 57990436684483a45921f1a627299da1, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
